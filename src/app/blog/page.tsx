@@ -12,7 +12,7 @@ import { SlSupport } from "react-icons/sl";
 
 const Blog = () => {
     return (
-        <div className="overflow-x-hidden">
+        <div className="overflow-x-hidden bg-secondary">
             {/* 1st section */}
             <div className="bg-[url('/image/shop/Rectangle-1.png')] h-[200px] md:h-[316px] bg-cover ">
                 {/* heading */}
