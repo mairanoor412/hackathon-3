@@ -44,7 +44,7 @@ const Header = () => {
                                     <Link href="/" target="_blank"> Home </Link>
                                 </li>
                                 <li className="text-[16px] font-[500] text-primary">
-                                    <Link href="\shop" target="_blank">  Shop </Link>
+                                    <Link href="/shop" target="_blank">  Shop </Link>
                                 </li>
                                 <li className="text-[16px] font-[500] text-primary">
                                     <Link href="/blog" target="_blank"> Blog </Link>
