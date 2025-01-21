@@ -74,7 +74,7 @@ const Header = () => {
                 <div className=" w-full  h-[60px] flex flex-row justify-end items-center md:hidden" onClick={() =>
                     setopen(!open)
                 }>
-                    <GiHamburgerMenu className="size-10 pr-5" />
+                    <GiHamburgerMenu className="size-10 pr-5 text-primary" />
                 </div>
 
             </div>

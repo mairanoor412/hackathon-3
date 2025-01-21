@@ -13,7 +13,7 @@ import Image from "next/image";
 
 const Contact = () => {
     return (
-        <div className="overflow-x-hidden">
+        <div className="overflow-x-hidden bg-secondary">
             {/* 1st section */}
             <div className="bg-[url('/image/shop/Rectangle-1.png')] h-[200px] md:h-[316px] bg-cover ">
                 {/* heading */}
@@ -47,7 +47,7 @@ const Contact = () => {
                         <div className="w-full py-3  lg:py-0 lg:pl-14 sm:w-[531px] sm:m-auto lg:w-[393px]  lg:h-[640px] flex flex-col lg:gap-12  items-start lg:mx-auto gap-5 md:gap-8 ">
                             {/* Address */}
                             <div className="flex gap-8">
-                                <FaMapMarkerAlt className="size-5" />
+                                <FaMapMarkerAlt className="size-5 text-primary" />
                                 <div>
                                     <h1 className="text-primary text-[20px] lg:text-[22px] xl:text-[24px] font-[500]">Address</h1>
                                     <p className="text-primary lg:w-[212px] w-[250px] sm:w-full text-[12px] lg:text-[14px]  xl:text-[16px]">236 5th SE Avenue, New York NY10000, United States</p>
@@ -56,7 +56,7 @@ const Contact = () => {
 
                             {/* Phone */}
                             <div className="flex  gap-8">
-                                <FaPhone className="size-5 " />
+                                <FaPhone className="size-5 text-primary" />
                                 <div className="">
                                     <h1 className="text-primary text-[24px] font-[500]"> Phone</h1>
                                     <p className="text-primary lg:w-[212px] w-[250px] sm:w-full text-[12px] lg:text-[14px] xl:text-[16px]">Mobile: +(84) 546-6789 Hotline: +(84) 456-6789</p>
@@ -65,7 +65,7 @@ const Contact = () => {
 
                             {/* Working Time */}
                             <div className="flex gap-8">
-                                <MdAccessTimeFilled className="size-5" />
+                                <MdAccessTimeFilled className="size-5 text-primary" />
                                 <div>
                                     <h1 className="text-primary text-[24px] font-[500]"> Working Time</h1>
                                     <p className="text-primary lg:w-[212px] w-[250px] sm:w-full text-[12px] lg:text-[14px] xl:text-[16px]">Monday-Friday: 9:00 - 22:00 Saturday-Sunday: 9:00 - 21:00</p>
@@ -77,25 +77,25 @@ const Contact = () => {
                         <div className="mt-10 min-w-[100px] lg:mt-24  lg:w-[531px] h-[741px] flex flex-col  xl:mx-0  gap-8">
                             {/* name */}
                             <div className="flex flex-col gap-5">
-                                <p className="text-[16px] font-[500] leading-[24px]"> Your name </p>
+                                <p className="text-[16px] font-[500] leading-[24px] text-primary"> Your name </p>
                                 <input type="text" id="name" placeholder="ABC" required className=" w-full  xl:w-[528.75px] h-[75px] border-[1px] border-[#9F9F9F] rounded-[10px] pl-4" />
                             </div>
 
                             {/* Email */}
                             <div className="flex flex-col gap-5">
-                                <p className="text-[16px] font-[500] leading-[24px]"> Email address </p>
+                                <p className="text-[16px] font-[500] leading-[24px] text-primary"> Email address </p>
                                 <input type="text" id="name" placeholder="Abc@def.com" required className="w-full xl:w-[528.75px] h-[75px] border-[1px] border-[#9F9F9F] rounded-[10px] pl-4" />
                             </div>
 
                             {/* Subject */}
                             <div className="flex flex-col gap-5">
-                                <p className="text-[16px] font-[500] leading-[24px]"> Subject </p>
+                                <p className="text-[16px] font-[500] leading-[24px] text-primary"> Subject </p>
                                 <input type="text" id="name" placeholder="This is an optional" required className="w-full xl:w-[528.75px] h-[75px] border-[1px] border-[#9F9F9F] rounded-[10px] pl-4" />
                             </div>
 
                             {/* message */}
                             <div className="flex flex-col gap-5">
-                                <p className="text-[16px] font-[500] leading-[24px]"> Message </p>
+                                <p className="text-[16px] font-[500] leading-[24px] text-primary"> Message </p>
                                 <input type="text" id="name" placeholder="Hi! i’d like to ask about" required className="w-full xl:w-[528.75px] h-[120px] border-[1px] border-[#9F9F9F] rounded-[10px] pl-4" />
                             </div>
 

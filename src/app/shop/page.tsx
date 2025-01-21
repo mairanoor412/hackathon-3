@@ -30,7 +30,7 @@ const Shop = async () => {
     const data = await client.fetch(query);
     console.log(data);
     return (
-        <div className="overflow-x-hidden">
+        <div className="overflow-x-hidden bg-secondary">
             {/* 1st section shop */}
             <div className="bg-[url('/image/shop/Rectangle-1.png')] h-[200px] md:h-[316px] bg-cover ">
                 {/* heading */}
@@ -55,27 +55,27 @@ const Shop = async () => {
                     <div className="flex items-center gap-3 md:gap-5">
                         <div className="gap-2 lg:w-[85px] flex items-center justify-between">
                             <HiAdjustmentsHorizontal className="lg:size-6" />
-                            <p className="font-[400] text-[20px] "> Filter </p>
+                            <p className="font-[400] text-[20px] text-primary "> Filter </p>
                         </div>
-                        <HiViewGrid className="lg:size-6" />
+                        <HiViewGrid className="lg:size-6 text-primary" />
                         <div className="w-[18px] h-[20px] border-y-[1px] border-primary flex justify-center items-center">
-                            <LuRectangleHorizontal className="lg:size-6" />
+                            <LuRectangleHorizontal className="lg:size-6 text-primary" />
                         </div>
 
                         <div className="pl-2 lg:w-[237px] h-[37px] border-l-[2px] border-[#9F9F9F] flex items-center justify-end ">
-                            <p className="font-[400] text-[16px]"> Showing 1–16 of 32 results </p>
+                            <p className="font-[400] text-[16px] text-primary"> Showing 1–16 of 32 results </p>
                         </div>
                     </div>
 
                     {/* right col*/}
                     <div className="flex items-center md:ml-auto gap-2 sm:gap-5 ">
                         <div className="gap-3 lg:w-[126px] flex items-center justify-between">
-                            <p className="text-[14px] md:text-[16px] lg:text-[20px]"> Show </p>
+                            <p className="text-[14px] md:text-[16px] lg:text-[20px] text-primary"> Show </p>
                             <p className="w-[55px] h-[55px] bg-secondary text-[#9F9F9F] flex items-center justify-center"> 16 </p>
                         </div>
 
                         <div className="w-[205px] lg:w-[288px] flex items-center justify-between">
-                            <p className="text-[14px] md:text-[16px] lg:text-[20px]"> Short by </p>
+                            <p className="text-[14px] md:text-[16px] lg:text-[20px] text-primary"> Short by </p>
                             <p className="w-[130px] lg:w-[188px] h-[55px] bg-secondary text-[#9F9F9F] flex items-center pl-7"> Default </p>
                         </div>
 
