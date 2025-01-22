@@ -1,3 +1,4 @@
+
 import { FaAngleRight } from "react-icons/fa";
 import Image from "next/image";
 import { IoIosStar } from "react-icons/io";
@@ -62,7 +63,7 @@ const SingleProduct = async ({ params }: { params: { productid: string } }) => {
                                 <FaAngleRight className="text-primary" />
                             </div>
 
-                            <div className="w-[140px] sm:w-[130px] lg:w-[142px] border-l-[2px]  border-[#9F9F9F] flex items-center justify-end ">
+                            <div className="w-[140px] sm:w-[130px] lg:w-[142px] pl-2 border-l-[2px]  border-[#9F9F9F] flex items-center justify-end ">
                                 <p className="text-primary text-[14px] lg:text-[16px]"> {product.title} </p>
                             </div>
                         </div>
@@ -264,10 +265,14 @@ const SingleProduct = async ({ params }: { params: { productid: string } }) => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-7 px-4 sm:px-10 md:px-14 lg:px-5 xl:px-0">
-                    <Image src="/image/single-product/Mask group (3).png" alt="image" width={605} height={348} className=" bg-[#F9F1E7]  mx-auto md:mx-0 rounded-[10px] lg:ml-auto" />
-                    <Image src="/image/single-product/Mask group (4).png" alt="image" width={605} height={348} className=" bg-[#F9F1E7]  mx-auto md:mx-0 rounded-[10px]" />
+                    {data.slice(4, 6).map((elem: Product, index: number) => (
+                        <Link href={`/single-product/${elem._id}`}>
+                        <Image key={index} src={elem.productImage} alt="image" width={605} height={348} className={`bg-[#F9F1E7] w-[605px] h-[348px]  mx-auto md:mx-0 rounded-[10px] ${index === 1 ? "mr-auto" : "lg:ml-auto"}`} />
+                         </Link>
+                    ))}
                 </div>
 
+            
                 <hr className="border-[1px] border-[1px solid #D9D9D9] my-16"></hr>
 
                 {/* 4th related product section */}
@@ -282,40 +287,40 @@ const SingleProduct = async ({ params }: { params: { productid: string } }) => {
                     <div className="grid grid-cols-1 justify-items-center gap-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 rounded-[5px]">
 
                         {/* card-1 */}
-                        {data.slice(1,5,).map((elem: Product) => (
+                        {data.slice(1, 5,).map((elem: Product) => (
                             <Link href={`/single-product/${elem._id}`}>
-                            <div key={elem._id}>
-                                <div className="w-[285px] h-[446px] bg-[#F4F5F7] rounded-[5px]  relative">
-                                    <div className="h-[48px] w-[48px] flex items-center justify-center text-[16px] font-[500] text-secondary bg-[#E97171] rounded-full absolute top-[18px] right-[15px] z-20"> -30% </div>
+                                <div key={elem._id}>
+                                    <div className="w-[285px] h-[446px] bg-[#F4F5F7] rounded-[5px]  relative">
+                                        <div className="h-[48px] w-[48px] flex items-center justify-center text-[16px] font-[500] text-secondary bg-[#E97171] rounded-full absolute top-[18px] right-[15px] z-20"> -30% </div>
 
-                                    <Image src={elem.productImage} alt="image" width={285} height={301} className="h-[301px] rounded-t-[5px]" />
-                                    {/* bottom data */}
-                                    <div className=" h-[99px] px-3 mt-4">
+                                        <Image src={elem.productImage} alt="image" width={285} height={301} className="h-[301px] rounded-t-[5px]" />
+                                        {/* bottom data */}
+                                        <div className=" h-[99px] px-3 mt-4">
 
-                                        <div className="flex flex-col justify-between gap-3">
-                                            <h1 className="text-[24px] font-[600] text-[#3A3A3A] "> {elem.title} </h1>
-                                            <p className="text-[16px] font-[500] text-[#898989]"> {elem.tags} </p>
+                                            <div className="flex flex-col justify-between gap-3">
+                                                <h1 className="text-[24px] font-[600] text-[#3A3A3A] "> {elem.title} </h1>
+                                                <p className="text-[16px] font-[500] text-[#898989]"> {elem.tags} </p>
+                                            </div>
+
+                                            <div className="flex flex-row h-[30px] items-center mt-2 gap-3">
+                                                <p className="text-[20px] font-[600] text-[#3A3A3A]">Rp {elem.price} </p>
+                                                <p className="text-[16px] text-[#B0B0B0] line-through">Rp 3.500.000</p>
+                                            </div>
+
                                         </div>
-
-                                        <div className="flex flex-row h-[30px] items-center mt-2 gap-3">
-                                            <p className="text-[20px] font-[600] text-[#3A3A3A]">Rp {elem.price} </p>
-                                            <p className="text-[16px] text-[#B0B0B0] line-through">Rp 3.500.000</p>
-                                        </div>
-
                                     </div>
                                 </div>
-                            </div>
                             </Link>
                         ))}
                     </div>
                 </div>
 
                 {/* button */}
-                <Link href="/shop" target="_blank">
-                <div className=" flex justify-center w-[245px]  border-[1px] border-[#B88E2F]  rounded-[5px] m-auto my-10  hover:bg-[#B88E2F] transition-all duration-300 ease-in-out transform hover:scale-105 hover:translate-y-[-2px]">
-                    <button className="w-[245px] py-[12px] text-[16px] font-[600] text-[#B88E2F] hover:text-secondary hover:font-[700] "> Show More</button>
-                </div>
-            </Link>
+                <Link href="/shop">
+                    <div className=" flex justify-center w-[245px]  border-[1px] border-[#B88E2F]  rounded-[5px] m-auto my-10  hover:bg-[#B88E2F] transition-all duration-300 ease-in-out transform hover:scale-105 hover:translate-y-[-2px]">
+                        <button className="w-[245px] py-[12px] text-[16px] font-[600] text-[#B88E2F] hover:text-secondary hover:font-[700] "> Show More</button>
+                    </div>
+                </Link>
 
             </div>
         )
@@ -326,90 +331,11 @@ export default SingleProduct
 
 
 
-{/* <div className="grid lg:grid-cols-2"> */ }
 
+{/* <div className="grid grid-cols-1 md:grid-cols-2 gap-7 px-4 sm:px-10 md:px-14 lg:px-5 xl:px-0">
+{data.slice(4, 6).map((elem: Product, index: number) => (
+    <Image key={index} src={elem.productImage} alt="image" width={605} height={348} className={`bg-[#F9F1E7] w-[605px] h-[348px]  mx-auto md:mx-0 rounded-[10px] ${index === 1 ? "mr-auto" : "lg:ml-auto"}`} />
 
-<div className="w-[285px] h-[446px] bg-[#F4F5F7] rounded-[5px]  relative">
-    <div className="h-[48px] w-[48px] flex items-center justify-center text-[16px] font-[500] text-secondary bg-[#E97171] rounded-full absolute top-[18px] right-[15px] z-20"> -30% </div>
+))}
+</div> */}
 
-    <Image src="/image/products/1-image 1.png" alt="image" width={285} height={301} className=" rounded-t-[5px]" />
-    {/* bottom data */}
-    <div className=" h-[99px] pl-3 mt-4">
-
-        <div className="flex flex-col gap-3">
-            <h1 className="text-[24px] font-[600] text-[#3A3A3A] "> Syltherine </h1>
-            <p className="text-[16px] font-[500] text-[#898989]"> Stylish cafe chair </p>
-        </div>
-
-        <div className="flex flex-row h-[30px] items-center mt-2 gap-3">
-            <p className="text-[20px] font-[600] text-[#3A3A3A]">Rp 2.500.000 </p>
-            <p className="text-[16px] text-[#B0B0B0] line-through">Rp 3.500.000</p>
-        </div>
-
-    </div>
-</div>
-
-
-{/* card-2 */ }
-<div className="w-[285px] h-[446px] bg-[#F4F5F7] rounded-[5px] relative ">
-    <div className="h-[48px] w-[48px] flex items-center justify-center text-[16px] font-[500] text-secondary bg-[#E97171] rounded-full absolute top-[18px] right-[15px] z-20"> -30% </div>
-
-    <Image src="/image/products/image 2.png" alt="image" width={285} height={301} className=" rounded-t-[5px]" />
-
-    {/* bottom data */}
-    <div className=" h-[99px] pl-3 mt-4 bg-[#F4F5F7]">
-
-        <div className="flex flex-col gap-3">
-            <h1 className="text-[24px] font-[600] text-[#3A3A3A] "> Syltherine </h1>
-            <p className="text-[16px] font-[500] text-[#898989]"> Stylish cafe chair </p>
-        </div>
-
-        <div className="flex flex-row h-[30px] items-center mt-2 gap-3">
-            <p className="text-[20px] font-[600] text-[#3A3A3A]">Rp 2.500.000 </p>
-            <p className="text-[16px] text-[#B0B0B0] line-through">Rp 3.500.000</p>
-        </div>
-
-    </div>
-</div>
-
-
-{/* card-3 */ }
-<div className="w-[285px] h-[446px] bg-[#F4F5F7]  rounded-[5px] relative lg:hidden xl:block">
-    <div className="h-[48px] w-[48px] flex items-center justify-center text-[16px] font-[500] text-secondary bg-[#E97171] rounded-full absolute top-[18px] right-[15px] z-20"> -50% </div>
-    <Image src="/image/products/3-image 3.png" alt="image" width={285} height={301} className=" rounded-t-[5px]" />
-    {/* bottom data */}
-    <div className=" h-[99px] pl-3 mt-4">
-
-        <div className="flex flex-col gap-3">
-            <h1 className="text-[24px] font-[600] text-[#3A3A3A] "> Lolito </h1>
-            <p className="text-[16px] font-[500] text-[#898989]"> Luxury big sofa </p>
-        </div>
-
-        <div className="flex flex-row h-[30px] items-center mt-2 gap-3">
-            <p className="text-[20px] font-[600] text-[#3A3A3A]">Rp 7.000.000 </p>
-            <p className="text-[16px] text-[#B0B0B0] line-through">Rp 14.000.000</p>
-        </div>
-
-    </div>
-</div>
-
-
-{/* card-4 */ }
-<div className="w-[285px] h-[446px] bg-[#F4F5F7]  rounded-[5px] relative">
-    <div className="h-[48px] w-[48px] flex items-center justify-center text-[16px] font-[500] text-secondary bg-[#2EC1AC] rounded-full absolute top-[18px] right-[15px] z-20"> New </div>
-    <Image src="/image/products/4-image 4.png" alt="image" width={285} height={301} className=" rounded-t-[5px]" />
-    {/* bottom data */}
-    <div className=" h-[99px] pl-3 mt-4">
-
-        <div className="flex flex-col gap-3">
-            <h1 className="text-[24px] font-[600] text-[#3A3A3A] "> Respira </h1>
-            <p className="text-[16px] font-[500] text-[#898989]"> Outdoor bar table and stool </p>
-        </div>
-
-        <div className="flex flex-row h-[30px] items-center mt-2 gap-3">
-            <p className="text-[20px] font-[600] text-[#3A3A3A]"> Rp 500.000 </p>
-
-        </div>
-
-    </div>
-</div>

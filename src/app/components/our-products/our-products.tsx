@@ -108,7 +108,7 @@ const OurProducts = async () => {
             </div>
 
             {/* Show more */}
-            <Link href="/shop" target="_blank">
+            <Link href="/shop">
                 <div className=" flex justify-center w-[245px]  border-[1px] border-[#B88E2F]  rounded-[5px] m-auto my-10  hover:bg-[#B88E2F] transition-all duration-300 ease-in-out transform hover:scale-105 hover:translate-y-[-2px]">
                     <button className="w-[245px] py-[12px] text-[16px] font-[600] text-[#B88E2F] hover:text-secondary hover:font-[700] "> Show More</button>
                 </div>

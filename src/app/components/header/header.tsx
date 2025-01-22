@@ -41,16 +41,16 @@ const Header = () => {
                         <div className="">
                             <ul className="flex flex-row md:gap-5 xl:w-[430px] xl:justify-between ">
                                 <li className="text-[16px] font-[500] text-primary">
-                                    <Link href="/" target="_blank"> Home </Link>
+                                    <Link href="/"> Home </Link>
                                 </li>
                                 <li className="text-[16px] font-[500] text-primary">
-                                    <Link href="/shop" target="_blank">  Shop </Link>
+                                    <Link href="/shop">  Shop </Link>
                                 </li>
                                 <li className="text-[16px] font-[500] text-primary">
-                                    <Link href="/blog" target="_blank"> Blog </Link>
+                                    <Link href="/blog"> Blog </Link>
                                 </li>
                                 <li className="text-[16px] font-[500] text-primary">
-                                    <Link href="/contact" target="_blank"> Contact </Link>
+                                    <Link href="/contact"> Contact </Link>
                                 </li>
 
                             </ul>
