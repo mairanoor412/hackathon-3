@@ -73,7 +73,7 @@ const Rooms = () => {
     };
     return (
         <div>{loading ? (
-            <div className="h-100vh w-full">
+            <div className="h-100vh w-full flex justify-center items-center bg-secondary">
                 <span className="loading loading-spinner loading-xs"></span>
                 <span className="loading loading-spinner loading-sm"></span>
                 <span className="loading loading-spinner loading-md"></span>
