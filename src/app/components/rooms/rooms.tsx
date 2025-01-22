@@ -16,7 +16,7 @@ interface Rooms {
 
 const Rooms = () => {
     const [data, setdata] = useState<Rooms[]>([])
-    const [loading, setloading] = useState(true)
+    const [loading, setloading] = useState(false)
 
     useEffect(() => {
         setloading(true);
@@ -74,9 +74,9 @@ const Rooms = () => {
     return (
         <div>{loading ? (
             <div className="h-100vh w-full flex justify-center items-center bg-secondary">
-                <span className="loading loading-spinner loading-xs text-primary"></span>
-                <span className="loading loading-spinner loading-sm text-yellow-800"></span>
-                <span className="loading loading-spinner loading-md text-primary"></span>
+                <span className="loading loading-spinner loading-xs before:bg-primary"></span>
+                <span className="loading loading-spinner loading-sm before:bg-yellow-800"></span>
+                <span className="loading loading-spinner loading-md before:bg-yellow-800"></span>
                 <span className="loading loading-spinner loading-lg text-yellow-800"></span>
             </div>
         ) : (
