@@ -37,11 +37,13 @@ const Rooms = () => {
     // Carousel setting
     var settings = {
         dots: true,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    initialSlide: 0,
+        infinite: true,
+        arrows: true,
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        pauseOnHover: true,
         responsive: [
             {
                 breakpoint: 1024,
@@ -72,10 +74,7 @@ const Rooms = () => {
     return (
         <div>{loading ? (
             <div className="h-100vh w-full flex justify-center items-center bg-secondary">
-                <span className="loading loading-spinner loading-xs before:bg-primary"></span>
-                <span className="loading loading-spinner loading-sm before:bg-yellow-800"></span>
-                <span className="loading loading-spinner loading-md before:bg-yellow-800"></span>
-                <span className="loading loading-spinner loading-lg text-yellow-800"></span>
+                <p className="text-primary">Loaging...</p>
             </div>
         ) : (
             <div className="overflow-x-hidden w-full h-[450px] sm:h-[550px] md:h-[600px] lg:h-[670px] flex flex-col justify-center items-center bg-[#FCF8F3]">
@@ -187,3 +186,10 @@ const Rooms = () => {
 }
 
 export default Rooms;
+
+
+
+{/* <span className="loading loading-spinner loading-xs text-primary"></span>
+                <span className="loading loading-spinner loading-sm  text-primary"></span>
+                <span className="loading loading-spinner loading-md  text-primary"></span>
+                <span className="loading loading-spinner loading-lg  text-primary"></span> */}
