@@ -37,13 +37,11 @@ const Rooms = () => {
     // Carousel setting
     var settings = {
         dots: true,
-        arrows: false,
-        infinite: true,
-        slidesToShow: 2,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        pauseOnHover: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    initialSlide: 0,
         responsive: [
             {
                 breakpoint: 1024,
