@@ -45,40 +45,38 @@ const Rooms = () => {
     // Carousel setting
     var settings = {
         dots: true,
-        infinite: true,
-        arrows: true,
+        infinite: false,
+        speed: 500,
         slidesToShow: 2,
         slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        pauseOnHover: true,
+        initialSlide: 0,
         responsive: [
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1,
-                    infinite: true,
-                    dots: true
-                }
-            },
-            {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    initialSlide: 2
-                }
-            },
-            {
-                breakpoint: 360,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
-                }
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 1,
+              infinite: true,
+              dots: true
             }
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 1,
+              initialSlide: 2
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
         ]
-    };
+      };
     return (
         <div>{loading ? (
             <div className="h-100vh w-full flex justify-center items-center bg-secondary">
