@@ -19,15 +19,23 @@ const Rooms = () => {
     const [loading, setloading] = useState(false)
 
     useEffect(() => {
-        setloading(true);
-        const fetchData = async () => {
-            const query = `*[_type =='product']{
-        _id,
-    "productImage": productImage.asset->url
-    }`
-            const response = await client.fetch(query);
-            setdata(response);
-            setloading(false);
+            setloading(true);
+            const fetchData = async () => {
+                try{
+                const query = `*[_type =='product']{
+                  _id,
+                "productImage": productImage.asset->url
+                   }`
+                const response = await client.fetch(query);
+                console.log(response);
+
+                setdata(response);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            } finally {
+                setloading(false);
+            }
+
         };
         fetchData();
     }, []);
