@@ -102,7 +102,8 @@ const Rooms = () => {
 
                     {/* carousel */}
                     <Slider {...settings}>
-                        <div className="">
+                    {data.map((product: Rooms) => (
+                        <div className="key={product._id}">
                             {/* image-1 */}
 
                             <div className=" relative">
@@ -125,11 +126,11 @@ const Rooms = () => {
                                 </div>
 
                                 <div>
-                                    {data.map((product: any) => (
+                                    
                                         <div key={product._id}>
                                             <Image src={product.productImage} alt="image" width={404} height={330} className="w-[404px] h-[330px] pr-4 md:pr-1 sm:h-[450px] md:h-[500px] lg:h-[582px]" />
                                         </div>
-                                    ))}
+                                   
                                 </div>
 
                             </div>
@@ -138,7 +139,7 @@ const Rooms = () => {
 
 
 
-
+                     ))}
                     </Slider>
 
 
