@@ -19,10 +19,10 @@ const Rooms = () => {
     const [loading, setloading] = useState(false)
 
     useEffect(() => {
-            setloading(true);
-            const fetchData = async () => {
-                try{
-                const query = `*[_type =='product']{
+        setloading(true);
+        const fetchData = async () => {
+            try {
+                const query = `*[_type =='product'][0...6]{
                   _id,
                 "productImage": productImage.asset->url
                    }`
@@ -123,65 +123,22 @@ const Rooms = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <Link href={`/single-product/${data[1]?._id}`}>
-                                    <div>
-                                        <Image src={data[1]?.productImage} alt="image" width={404} height={330} className="w-[404px] h-[330px] pr-4 md:pr-1 sm:h-[450px] md:h-[500px] lg:h-[582px]" />
-                                    </div>
-                                </Link>
-                            </div>
 
-                        </div>
-
-                        <div>
-                            {/* image-2 */}
-                            <Link href={`/single-product/${data[0]?._id}`}>
-                                <div className="pr-4 md:px-5">
-                                    <Image src={data[0]?.productImage} alt="image" width={372} height={330} className="w-[372px] h-[330px] pr-4 md:pr-1 sm:h-[450px] md:h-[440px] lg:h-[486px]" />
+                                <div>
+                                    {data.map((product: any) => (
+                                        <div key={product._id}>
+                                            <Image src={product.productImage} alt="image" width={404} height={330} className="w-[404px] h-[330px] pr-4 md:pr-1 sm:h-[450px] md:h-[500px] lg:h-[582px]" />
+                                        </div>
+                                    ))}
                                 </div>
-                            </Link>
+
+                            </div>
+
                         </div>
 
-                        {/* image-3 */}
-                        <Link href={`/single-product/${data[2]?._id}`}>
-                            <div className=" ">
-                                <Image src={data[2]?.productImage} alt="image" width={372} height={486} className="w-[372px] h-[330px] pr-5 md:pr-4 sm:h-[450px] md:h-[440] lg:h-[486px]" />
-                            </div>
-                        </Link>
 
-                        {/* image-4 */}
-                        <Link href={`/single-product/${data[3]?._id}`}>
-                            <div>
-                                <Image src={data[3]?.productImage} alt="image" width={372} height={486} className="w-[372px] h-[330px] pr-4 md:pr-5 sm:h-[450px] md:h-[440] lg:h-[486px]" />
-                            </div>
-                        </Link>
 
-                        {/* image-5 */}
-                        <Link href={`/single-product/${data[4]?._id}`}>
-                            <div>
-                                <Image src={data[4]?.productImage} alt="image" width={372} height={486} className="w-[372px] h-[330px] pr-4 md:pr-5 sm:h-[450px] md:h-[440] lg:h-[486px]" />
-                            </div>
-                        </Link>
 
-                        {/* image-6 */}
-                        <Link href={`/single-product/${data[5]?._id}`}>
-                            <div>
-                                <Image src={data[5]?.productImage} alt="image" width={372} height={486} className="w-[372px] h-[330px] pr-4 md:pr-5 sm:h-[450px] md:h-[440] lg:h-[486px]" />
-                            </div>
-                        </Link>
-
-                        {/* image-7 */}
-                        <Link href={`/single-product/${data[6]?._id}`}>
-                            <div>
-                                <Image src={data[6]?.productImage} alt="image" width={372} height={486} className="w-[372px] h-[330px] pr-4 md:pr-5 sm:h-[450px] md:h-[440] lg:h-[486px]" />
-                            </div>
-                        </Link>
-
-                        {/* image-8*/}
-                        <Link href={`/single-product/${data[7]?._id}`}>
-                            <div>
-                                <Image src={data[7]?.productImage} alt="image" width={372} height={486} className="w-[372px] h-[330px] pr-4 md:pr-5 sm:h-[450px] md:h-[440] lg:h-[486px]" />
-                            </div>
-                        </Link>
                     </Slider>
 
 
@@ -196,8 +153,59 @@ const Rooms = () => {
 export default Rooms;
 
 
-
+{/* <Image src={data[1]?.productImage} alt="image" width={404} height={330} className="w-[404px] h-[330px] pr-4 md:pr-1 sm:h-[450px] md:h-[500px] lg:h-[582px]" /> */ }
 {/* <span className="loading loading-spinner loading-xs text-primary"></span>
                 <span className="loading loading-spinner loading-sm  text-primary"></span>
                 <span className="loading loading-spinner loading-md  text-primary"></span>
                 <span className="loading loading-spinner loading-lg  text-primary"></span> */}
+
+//          {/* image-2 */}
+//          <Link href={`/single-product/${data[0]?._id}`}>
+//          <div className="pr-4 md:px-5">
+//              <Image src={data[0]?.productImage} alt="image" width={372} height={330} className="w-[372px] h-[330px] pr-4 md:pr-1 sm:h-[450px] md:h-[440px] lg:h-[486px]" />
+//          </div>
+//      </Link>
+//  </div>
+
+//  {/* image-3 */}
+//  <Link href={`/single-product/${data[2]?._id}`}>
+//      <div className=" ">
+//          <Image src={data[2]?.productImage} alt="image" width={372} height={330} className="w-[372px] h-[330px] pr-5 md:pr-4 sm:h-[450px] md:h-[440] lg:h-[486px]" />
+//      </div>
+//  </Link>
+
+//  {/* image-4 */}
+//  <Link href={`/single-product/${data[3]?._id}`}>
+//      <div>
+//          <Image src={data[3]?.productImage} alt="image" width={372} height={330} className="w-[372px] h-[330px] pr-4 md:pr-5 sm:h-[450px] md:h-[440] lg:h-[486px]" />
+//      </div>
+//  </Link>
+
+//  {/* image-5 */}
+//  <Link href={`/single-product/${data[4]?._id}`}>
+//      <div>
+//          <Image src={data[4]?.productImage} alt="image" width={372} height={330} className="w-[372px] h-[330px] pr-4 md:pr-5 sm:h-[450px] md:h-[440] lg:h-[486px]" />
+//      </div>
+//  </Link>
+
+//  {/* image-6 */}
+//  <Link href={`/single-product/${data[5]?._id}`}>
+//      <div>
+//          <Image src={data[5]?.productImage} alt="image" width={372} height={330} className="w-[372px] h-[330px] pr-4 md:pr-5 sm:h-[450px] md:h-[440] lg:h-[486px]" />
+//      </div>
+//  </Link>
+
+//  {/* image-7 */}
+//  <Link href={`/single-product/${data[6]?._id}`}>
+//      <div>
+//          <Image src={data[6]?.productImage} alt="image" width={372} height={330} className="w-[372px] h-[330px] pr-4 md:pr-5 sm:h-[450px] md:h-[440] lg:h-[486px]" />
+//      </div>
+//  </Link>
+
+//  {/* image-8*/}
+//  <Link href={`/single-product/${data[7]?._id}`}>
+//      <div>
+//          <Image src={data[7]?.productImage} alt="image" width={372} height={486} className="w-[372px] h-[330px] pr-4 md:pr-5 sm:h-[450px] md:h-[440] lg:h-[486px]" />
+//      </div>
+// </Link>
+// </div>
