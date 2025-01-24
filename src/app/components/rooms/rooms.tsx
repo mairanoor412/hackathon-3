@@ -21,7 +21,7 @@ const Rooms = () => {
     useEffect(() => {
         setloading(true);
         const fetchData = async () => {
-            const query = `*[_type=='product'][9...17]{
+            const query = `*[_type =='product']{
         _id,
     "productImage": productImage.asset->url
     }`
@@ -63,7 +63,7 @@ const Rooms = () => {
                 }
             },
             {
-                breakpoint: 480,
+                breakpoint: 360,
                 settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1
@@ -74,7 +74,7 @@ const Rooms = () => {
     return (
         <div>{loading ? (
             <div className="h-100vh w-full flex justify-center items-center bg-secondary">
-                <p className="text-primary">Loaging...</p>
+                <p className="text-primary">Loading...</p>
             </div>
         ) : (
             <div className="overflow-x-hidden w-full h-[450px] sm:h-[550px] md:h-[600px] lg:h-[670px] flex flex-col justify-center items-center bg-[#FCF8F3]">
