@@ -45,7 +45,7 @@ const Shop = () => {
             console.log(response);
         }
         fetchData()
-    })
+    }, [])
 
     const selectPageHandler =(selectedPage:number)=>{
         if(selectedPage>=1 && selectedPage<= data.length/8 && selectedPage !== page)
