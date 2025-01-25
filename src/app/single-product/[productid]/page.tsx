@@ -9,6 +9,7 @@ import { IoLogoLinkedin } from "react-icons/io5";
 import { AiFillTwitterCircle } from "react-icons/ai";
 import { client } from "@/sanity/lib/client";
 import Link from "next/link";
+import ProductListing from "@/app/components/product-listing/product-listing";
 
 
 interface Product {
@@ -249,7 +250,7 @@ const SingleProduct = async ({ params }: { params: { productid: string } }) => {
                 </div>
 
 
-                {/* 3rd section */}
+                {/* 3rd section Additional information */}
                 <div>
                     <hr className="border-[1px] border-[1px solid #D9D9D9] my-8"></hr>
                     <div className="flex flex-col md:flex-row md:w-[649px] items-center justify-center md:justify-between mx-auto pt-3">
@@ -282,38 +283,14 @@ const SingleProduct = async ({ params }: { params: { productid: string } }) => {
                     <h1 className="text-[22px] sm:text-[25px] md:text-[30px] lg:text-[32px] font-[500] xl:text-[36px] "> Related Products </h1>
                 </div>
 
-                {/* container */}
-                <div className="xl:w-[1236px] xl:m-auto pt-14">
-                    <div className="grid grid-cols-1 justify-items-center gap-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 rounded-[5px]">
-
-                        {/* card-1 */}
-                        {data.slice(1, 5,).map((elem: Product) => (
-                            <Link href={`/single-product/${elem._id}`}>
-                                <div key={elem._id}>
-                                    <div className="w-[285px] h-[446px] bg-[#F4F5F7] rounded-[5px]  relative">
-                                        <div className="h-[48px] w-[48px] flex items-center justify-center text-[16px] font-[500] text-secondary bg-[#E97171] rounded-full absolute top-[18px] right-[15px] z-20"> -30% </div>
-
-                                        <Image src={elem.productImage} alt="image" width={285} height={301} className="h-[301px] rounded-t-[5px]" />
-                                        {/* bottom data */}
-                                        <div className=" h-[99px] px-3 mt-4">
-
-                                            <div className="flex flex-col justify-between gap-3">
-                                                <h1 className="text-[24px] font-[600] text-[#3A3A3A] "> {elem.title} </h1>
-                                                <p className="text-[16px] font-[500] text-[#898989]"> {elem.tags} </p>
-                                            </div>
-
-                                            <div className="flex flex-row h-[30px] items-center mt-2 gap-3">
-                                                <p className="text-[20px] font-[600] text-[#3A3A3A]">Rp {elem.price} </p>
-                                                <p className="text-[16px] text-[#B0B0B0] line-through">Rp 3.500.000</p>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </Link>
-                        ))}
-                    </div>
+                {/* product listing */}
+                <div className="xl:w-[1244px] xl:m-auto pt-14 ">
+                <div className="grid grid-cols-1 justify-items-center gap-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 rounded-[5px]">
+                    {data.slice(0, 3).map((product: any) => (
+                        <ProductListing product={product} key={product._id} />
+                    ))}
                 </div>
+            </div>
 
                 {/* button */}
                 <Link href="/shop">

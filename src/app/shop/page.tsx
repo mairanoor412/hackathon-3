@@ -1,37 +1,60 @@
+"use client"
 import { FaGreaterThan } from "react-icons/fa6";
 import { HiAdjustmentsHorizontal } from "react-icons/hi2";
 import { HiViewGrid } from "react-icons/hi";
 import { LuRectangleHorizontal } from "react-icons/lu";
-import { CiShare2 } from "react-icons/ci";
-import { MdOutlineCompareArrows } from "react-icons/md";
-import { CiHeart } from "react-icons/ci";
 import { HiOutlineTrophy } from "react-icons/hi2";
 import { RiCheckboxCircleLine } from "react-icons/ri";
 import { MdOutlineLocalShipping } from "react-icons/md";
 import { SlSupport } from "react-icons/sl";
-import Link from "next/link";
-import Image from "next/image";
 import { client } from "@/sanity/lib/client";
+import ProductListing from "../components/product-listing/product-listing";
+import { useEffect, useState } from "react";
+
+interface Product {
+    _id: number;
+    title: string;
+    price: number;
+    productImage: any;
+    tags: string;
+    discountPercentage: number;
+    description: string;
+    isNew: boolean;
+}
+
+const Shop = () => {
+    const [data, setdata] = useState<Product[]>([]);
+    const [page, setpage] = useState(1)
 
 
+    useEffect(() => {
+        const fetchData = async () => {
+            const query = ` *[_type=='product']{
+                     _id,
+                    title,
+                     price,
+                     "productImage": productImage.asset->url,
+                     tags[3],
+                     dicountPercentage,
+                     description,
+                     isNew,
+                 }`
 
-const Shop = async () => {
-    const query = ` *[_type=='product']{
-            _id,
-            title,
-            price,
-            "productImage": productImage.asset->url,
-            tags[3],
-            dicountPercentage,
-            description,
-            isNew,
-    }`
+            const response = await client.fetch(query);
+            setdata(response);
+            console.log(response);
+        }
+        fetchData()
+    })
 
-    const data = await client.fetch(query);
-    console.log(data);
+    const selectPageHandler =(selectedPage:number)=>{
+        if(selectedPage>=1 && selectedPage<= data.length/8 && selectedPage !== page)
+        setpage(selectedPage)
+    }
+
     return (
         <div className="overflow-x-hidden bg-secondary">
-            {/* 1st section shop */}
+            {/* 1st section shop Banner*/}
             <div className="bg-[url('/image/shop/Rectangle-1.png')] h-[200px] md:h-[316px] bg-cover ">
                 {/* heading */}
                 <div className="h-[200px] md:h-[316px] flex flex-col justify-center items-center">
@@ -83,84 +106,36 @@ const Shop = async () => {
                 </div>
             </div>
 
-            {/* 3rd section products */}
+            {/*3rd section Product Listing */}
+
             <div className="xl:w-[1244px] xl:m-auto pt-14 ">
-                <div className="grid grid-cols-1 justify-items-center gap-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 rounded-[5px]">
-
-                    {data.map((product: any) => (
-
-                        <Link href={`/single-product/${product._id}`}>
-                            <div key={product._id} className="w-[285px] h-[446px] bg-[#F4F5F7] rounded-[5px]  relative transition-transform transform hover:scale-105 hover:translate-y-2 duration-500 ease-out">
-                                <div className="h-[48px] w-[48px] flex items-center justify-center text-[16px] font-[500] text-secondary bg-[#E97171] rounded-full absolute top-[18px] right-[15px] z-20"> -30% </div>
-
-                                {/* Add to Card */}
-                                <div className="// w-[285px] h-[446px] opacity-0 transform translate-y-40 transition-all duration-200 ease-in-out hover:translate-y-0 hover:bg-[#3A3A3A] hover:opacity-[72%] absolute inset-0 rounded-[5px]">
-                                    <div className="w-[252px] h-[96px] flex flex-col items-center gap-[24px] m-auto absolute top-[175px] left-[16px]  ">
-                                        {/* card button */}
-                                        <button className="w-[202px] h-[48px] text-[16px] font-[600] leading-[24px] text-[#B88E2F] bg-secondary"> Add to cart</button>
-
-                                        {/* share/compare/like */}
-                                        <div className="h-[24px] gap-[20px] flex">
-                                            {/* share */}
-                                            <div className="flex items-center gap-[2px]">
-                                                <CiShare2 className="w-[16px] h-[16px] text-secondary" />
-                                                <p className="text-secondary text-[16px] font-[600]"> Share</p>
-                                            </div>
-
-                                            {/* compare */}
-                                            <div className="flex items-center gap-[2px]">
-                                                <MdOutlineCompareArrows className="w-[16px] h-[16px] text-secondary" />
-                                                <p className="text-secondary text-[16px] font-[600]"> Compare </p>
-                                            </div>
-
-                                            {/* like */}
-                                            <div className="flex items-center gap-[2px]">
-                                                <CiHeart className="w-[16px] h-[16px] text-secondary" />
-                                                <p className="text-secondary text-[16px] font-[600]"> Like </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <Image src={product.productImage} alt="image" width={285} height={301} className="w-[285px] h-[301px] rounded-t-[5px]" />
-                                {/* bottom data */}
-                                <div className=" h-[99px] px-3 mt-4">
-
-                                    <div className="flex flex-col gap-3">
-                                        <h1 className="text-[24px] font-[600] text-[#3A3A3A] "> {product.title} </h1>
-                                        <p className="text-[16px] font-[500] text-[#898989]"> {product.tags} </p>
-                                    </div>
-
-                                    <div className="flex flex-row justify-between h-[30px] items-center mt-2 gap-3">
-                                        <p className="text-[20px] font-[600] text-[#3A3A3A]">Rs {product.price} </p>
-                                        <p className="text-[16px] text-[#B0B0B0] line-through">Rp 3.500.000</p>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </Link>
-
-                    ))}
-
-
-                </div>
-
-                <div className="h-[90px] flex justify-center items-end gap-[8px] md:gap-[38px] mt-8">
-                    <div className="w-[60px] h-[60px] flex justify-center items-center bg-[#F9F1E7] hover:bg-[#B88E2F] rounded-[10px]">
-                        <p className="text-[20px] text-primary hover:text-secondary"> 1 </p>
+                {data.length > 0 && (
+                    <div className="grid grid-cols-1 justify-items-center gap-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 rounded-[5px]">
+                        {data.slice(page*9-9, page*9).map((product: Product) => (
+                            <ProductListing product={product} key={product._id} />
+                        ))}
                     </div>
-                    <div className="w-[60px] h-[60px] flex justify-center items-center bg-[#F9F1E7] hover:bg-[#B88E2F] rounded-[10px] ">
-                        <p className="text-[20px] text-primary hover:text-secondary"> 2 </p>
-                    </div>
-                    <div className="w-[60px] h-[60px] flex justify-center items-center bg-[#F9F1E7] hover:bg-[#B88E2F] rounded-[10px]">
-                        <p className="text-[20px] text-primary hover:text-secondary"> 4 </p>
-                    </div>
-                    <div className="w-[98px] h-[60px] flex justify-center items-center  bg-[#F9F1E7] hover:bg-[#B88E2F] rounded-[10px]">
-                        <p className="text-[20px] font-[300] text-primary hover:text-secondary"> Next </p>
-                    </div>
+                )}
 
-                </div>
             </div>
+            {/* pagination */}
+            {data.length > 0 && <div>
+                <div className="h-[90px] flex justify-center items-end gap-[8px] md:gap-[38px] mt-10">
+                   {[...Array(data.length/8)].map((_, i)=>{
+                    return(
+                        <div key={i}>
+                       <span  onClick={()=>selectPageHandler(i+1)} className={`text-[20px] text-primary border-[1px] border-[#F9F1E7] w-[60px] h-[60px] flex justify-center items-center  rounded-[10px] cursor-pointer ${page === i+1 ? "bg-[#B88E2F] text-secondary" : ""}` }  > {i+ 1}  </span>
+                       </div>
+                    )
+                   })}
+               
+                <div className="">
+                    <p onClick={()=>selectPageHandler(page + 1)} className={`text-[20px] text-primary border-[1px] border-[#F9F1E7] w-[98px] h-[60px] flex justify-center items-center bg-[#F9F1E7] rounded-[10px]  cursor-pointer ${page < data.length /8 ? "" : "opacity-10"}`} > Next </p>
+                </div>
+
+            </div>
+                </div>}
+           
 
 
             {/* 4th section */}
@@ -215,3 +190,4 @@ const Shop = async () => {
 }
 
 export default Shop;
+

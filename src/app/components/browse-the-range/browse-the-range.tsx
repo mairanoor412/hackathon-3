@@ -31,8 +31,8 @@ const BrowseTheRange = async () => {
                     {/* card-1 */}
                     <Link href={`/single-product/${data[20]._id}`}>
                     <div className="transition-transform transform hover:scale-95 hover:translate-y-2 duration-500 ease-out">
-                        <Image src={data[20].productImage} alt="image" width={381} height={440} className="w-[285px] h-[480px] xl:w-[381px] rounded-[15px]" />
-                        <div className="w-[285px]  xl:w-[381px] flex justify-center">
+                        <Image src={data[20].productImage} alt="image" width={381} height={400} className="w-[290px] h-[400px] lg:h-[480px]  lg:w-[381px] rounded-[15px]" />
+                        <div className="w-[290px]  lg:w-[381px] flex justify-center">
                             <p className="text-[18px] md:text-[20px] xl:text-[24px] font-[600] text-[#333333] pt-3"> Dining </p>
                         </div>
                     </div>
@@ -42,9 +42,9 @@ const BrowseTheRange = async () => {
                     {/* card-2 */}
                     <Link href={`/single-product/${data[12]._id}`}>
                     <div className="transition-transform transform hover:scale-95 hover:translate-y-2 duration-500 ease-out">
-                        <Image src={data[12].productImage} alt="image" width={381} height={440} className="w-[285px] h-[480px] xl:w-[381px] rounded-[15px]" />
-                        <div className="w-[285px] xl:w-[381px] flex justify-center">
-                            <p className="text-[18px] md:text-[20px] xl:text-[24px] font-[600] text-[#333333] pt-3"> Living </p>
+                        <Image src={data[12].productImage} alt="image" width={381} height={400} className="w-[290px] h-[400px] lg:h-[480px] lg:w-[381px] rounded-[15px]" />
+                        <div className="w-[290px] lg:w-[381px] flex justify-center items-center">
+                            <p className=" text-[18px] md:text-[20px] xl:text-[24px] font-[600] text-[#333333] pt-3"> Living </p>
                         </div>
                     </div>
                     </Link>
@@ -53,8 +53,8 @@ const BrowseTheRange = async () => {
                     {/* card-3 */}
                     <Link href={`/single-product/${data[18]._id}`}>
                     <div className="transition-transform transform hover:scale-95 hover:translate-y-2 duration-500 ease-out md:hidden lg:block ">
-                        <Image src={data[18].productImage} alt="image" width={381} height={440} className="w-[285px] h-[480px] xl:w-[381px] rounded-[15px]" />
-                        <div className="w-[285px] xl:w-[381px] flex justify-center">
+                        <Image src={data[18].productImage} alt="image" width={381} height={400} className="w-[290px] h-[400px] lg:h-[480px] lg:w-[381px] rounded-[15px]" />
+                        <div className="w-[290px] lg:w-[381px] flex justify-center">
                             <p className="text-[18px] md:text-[20px] xl:text-[24px] font-[600] text-[#333333] pt-3"> Bedroom </p>
                         </div>
                     </div>
