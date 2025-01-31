@@ -1,19 +1,12 @@
+
 import { CiShare2 } from "react-icons/ci";
 import { MdOutlineCompareArrows } from "react-icons/md";
 import { CiHeart } from "react-icons/ci";
 import Link from "next/link";
 import Image from "next/image";
+import { Product } from "@/app/utils/types";
 
-interface Product {
-    _id: number;
-    title: string;
-    price: number;
-    productImage: any;
-    tags: string;
-    discountPercentage: number;
-    description: string;
-    isNew: boolean;
-}
+
 
 const ProductListing = ({ product }: { product:Product }) => {
     return (

@@ -1,38 +1,25 @@
-import Image from "next/image";
-import { CiShare2 } from "react-icons/ci";
-import { MdOutlineCompareArrows } from "react-icons/md";
-import { CiHeart } from "react-icons/ci";
-import { client } from "@/sanity/lib/client";
+"use client"
 import Link from "next/link";
 import ProductListing from "../product-listing/product-listing";
+import { useEffect } from "react";
+import { fetchProducts } from "@/app/store/features/product";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/app/store/store";
+import { Product } from "@/app/utils/types";
 
 
-interface Product {
-    _id: number;
-    title: string;
-    price: number;
-    productImage: any;
-    tags: string;
-    discountPercentage: number;
-    description: string;
-    isNew: boolean;
-}
+
+const OurProducts = () => {
 
 
-const OurProducts = async () => {
+    const dispatch = useDispatch<AppDispatch>();
+    const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
+    const { data, status } = useTypedSelector((state) => state.product);
 
-    const query = ` *[_type=='product'][0...9]{
-        _id,
-        title,
-        price,
-        "productImage": productImage.asset->url,
-        tags[3],
-        dicountPercentage,
-        description,
-        isNew,
-}`
+    useEffect(() => {
+        dispatch(fetchProducts());
+    }, [dispatch])
 
-    const data = await client.fetch(query);
 
 
     return (
@@ -45,13 +32,13 @@ const OurProducts = async () => {
             {/* Cards Product Listing*/}
             <div className="xl:w-[1244px] xl:m-auto pt-14 ">
                 <div className="grid grid-cols-1 justify-items-center gap-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 rounded-[5px]">
-                    {data.map((product: any) => (
+                    {data.map((product:Product) => (
                         <ProductListing product={product} key={product._id} />
                     ))}
                 </div>
             </div>
 
-            
+
             {/* Show more */}
             <Link href="/shop">
                 <div className=" flex justify-center w-[245px]  border-[1px] border-[#B88E2F]  rounded-[5px] m-auto my-10  hover:bg-[#B88E2F] transition-all duration-300 ease-in-out transform hover:scale-105 hover:translate-y-[-2px]">

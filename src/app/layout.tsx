@@ -1,9 +1,13 @@
+
 import { Poppins , Montserrat } from "next/font/google";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
+import Providers from "./providers";
+
+
 
 const poppins = Poppins({
   subsets : ["latin"],
@@ -40,9 +44,12 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={poppins.className}>
+          <Providers>
           <Header></Header>
         {children}
         <Footer></Footer>
+        </Providers>
+       
 
       </body>
     </html>
