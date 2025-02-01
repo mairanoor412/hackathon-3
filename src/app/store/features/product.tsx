@@ -47,13 +47,13 @@ export function fetchProducts(){
   return async function fetchproductThunk(dispatch:AppDispatch){
     dispatch(setStatus(STATUSES.loading));
     try{
-        const query = ` *[_type=='product'][0...9]{
+        const query = ` *[_type=='product']{
               _id,
               title,
               price,
               "productImage": productImage.asset->url,
               tags[3],
-              discountPercentage,
+              dicountPercentage,
               description,
               isNew,
       }`

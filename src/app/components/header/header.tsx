@@ -15,7 +15,7 @@ const Header = () => {
     const [open, setopen] = useState(false)
 
     return (
-        <div className=" overflow-x-hidden w-full bg-secondary">
+        <div className=" overflow-x-hidden w-full bg-secondary fixed  z-50">
 
             <div className="xl:w-[1286px] xl:mx-auto">
 

@@ -43,3 +43,10 @@ const HeroSection =async () => {
 }
 
 export default HeroSection;
+
+
+// style={{
+//     backgroundImage: `url(${data[4]?.productImage})`,
+// }}
+// className="h-[250px] sm:h-[350px] md:h-[550px] lg:h-[600px] xl:h-[716.83px] bg-cover bg-center"
+// >

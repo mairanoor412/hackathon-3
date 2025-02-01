@@ -5,7 +5,7 @@ export type Product = {
     price: number;
     productImage: any;
     tags: string;
-    discountPercentage: number;
+    dicountPercentage: number;
     description: string;
     isNew: boolean;
 }

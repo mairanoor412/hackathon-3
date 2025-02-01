@@ -51,12 +51,16 @@ const ProductListing = ({ product }: { product:Product }) => {
 
                         <div className="flex flex-col gap-3">
                             <h1 className="text-[24px] font-[600] text-[#3A3A3A] "> {product.title} </h1>
-                            <p className="text-[16px] font-[500] text-[#898989]"> {product.tags} </p>
+                            <p className="text-[16px] font-[500] "> {product.tags} </p>
                         </div>
 
                         <div className="flex flex-row justify-between h-[30px] items-center mt-2 gap-3">
-                            <p className="text-[20px] font-[600] text-[#3A3A3A]">Rs {product.price} </p>
-                            <p className="text-[16px] text-[#B0B0B0] line-through">Rp 3.500.000</p>
+                             {/* discounted value */}
+                             {product.dicountPercentage > 0 && ( <p className="text-[20px] font-[600] text-primary"> Rs {product.price - (product.price * product.dicountPercentage)/100} </p>
+                            )}
+                           
+                           
+                            <p className={`text-[20px] font-[600] text-primary   ${product.dicountPercentage > 0 && "line-through text-[#7e7d7d] text-lg font-normal"}`}>Rs {product.price}</p>
                         </div>
 
                     </div>
