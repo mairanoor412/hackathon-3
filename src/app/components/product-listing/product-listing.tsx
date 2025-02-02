@@ -14,7 +14,10 @@ const ProductListing = ({ product }: { product:Product }) => {
             
             <Link href={`/single-product/${product._id}`}>
                 <div key={product._id} className="w-[285px] h-[446px] bg-[#F4F5F7] rounded-[5px]  relative transition-transform transform hover:scale-105 hover:translate-y-2 duration-500 ease-out">
-                    <div className="h-[48px] w-[48px] flex items-center justify-center text-[16px] font-[500] text-secondary bg-[#E97171] rounded-full absolute top-[18px] right-[15px] z-20"> -30% </div>
+                    {product.dicountPercentage > 0 && (
+                         <div className="h-[48px] w-[48px] flex items-center justify-center text-[16px] font-[500] text-secondary bg-[#E97171] rounded-full absolute top-[18px] right-[15px] z-20"> {product.dicountPercentage}% </div>
+                     )}
+                   
 
                     {/* Add to Card */}
                     <div className="// w-[285px] h-[446px] opacity-0 transform translate-y-20 transition-all duration-200 ease-in-out hover:translate-y-0 hover:bg-[#3A3A3A] hover:opacity-[72%] absolute inset-0 rounded-[5px]">
@@ -56,7 +59,8 @@ const ProductListing = ({ product }: { product:Product }) => {
 
                         <div className="flex flex-row justify-between h-[30px] items-center mt-2 gap-3">
                              {/* discounted value */}
-                             {product.dicountPercentage > 0 && ( <p className="text-[20px] font-[600] text-primary"> Rs {product.price - (product.price * product.dicountPercentage)/100} </p>
+                             {product.dicountPercentage > 0 && ( 
+                                <p className="text-[20px] font-[600] text-primary"> Rs {product.price - (product.price * product.dicountPercentage)/100} </p>
                             )}
                            
                            
