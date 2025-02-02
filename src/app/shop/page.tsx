@@ -10,17 +10,18 @@ import { SlSupport } from "react-icons/sl";
 import { client } from "@/sanity/lib/client";
 import ProductListing from "../components/product-listing/product-listing";
 import { useEffect, useState } from "react";
+import { Product } from "../utils/types";
 
-interface Product {
-    _id: number;
-    title: string;
-    price: number;
-    productImage: any;
-    tags: string;
-    discountPercentage: number;
-    description: string;
-    isNew: boolean;
-}
+// interface Product {
+//     _id: number;
+//     title: string;
+//     price: number;
+//     productImage: any;
+//     tags: string;
+//     dicountPercentage: number;
+//     description: string;
+//     isNew: boolean;
+// }
 
 const Shop = () => {
     const [data, setdata] = useState<Product[]>([]);
