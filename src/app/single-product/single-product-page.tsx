@@ -32,21 +32,18 @@ const SingleProductPage = ({ params }: { params: { productid: string } }) => {
     const product = data[index]
     console.log(index);
 
-     
+    
     if (!product) {
         return <p>Product not found</p>;
     }
+
     const [cartItem, setCartItem] = useState({
-        
-       
         dicountPercentage: product.dicountPercentage,
         price: product.price,
         qty: 1
        
-        
-    })
-
-
+    });
+    
     return (
         <div>
             {/* 1st section */}

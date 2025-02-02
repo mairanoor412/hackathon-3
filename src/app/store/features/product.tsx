@@ -53,7 +53,7 @@ export function fetchProducts(){
               price,
               "productImage": productImage.asset->url,
               tags[3],
-              dicountPercentage?,
+              dicountPercentage,
               description,
               isNew,
       }`

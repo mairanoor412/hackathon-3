@@ -7,7 +7,7 @@ export type Product = {
     tags: string;
     dicountPercentage: number;
     description: string;
-    isNew: boolean;
+    isNew?: boolean;
 }
 
 
