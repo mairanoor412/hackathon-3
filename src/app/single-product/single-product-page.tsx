@@ -12,7 +12,7 @@ import Link from "next/link";
 import ProductListing from "@/app/components/product-listing/product-listing";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/app/store/store";
-import { fetchProducts } from "@/app/store/features/product";
+import { fetchProducts, STATUSES } from "@/app/store/features/product";
 import { useEffect, useState } from "react";
 
 const SingleProductPage = ({ params }: { params: { productid: string } }) => {
@@ -21,29 +21,66 @@ const SingleProductPage = ({ params }: { params: { productid: string } }) => {
     const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
     const { data, status } = useTypedSelector((state) => state.product);
 
+
+    // // Initialize cartItem with default values
+    // const [cartItem, setCartItem] = useState({
+    //     dicountPercentage: 0, // Default value
+    //     price: 0, // Default value
+    //     qty: 1,
+    // });
+
+    // useEffect(() => {
+    //     dispatch(fetchProducts());
+    // }, [dispatch]);
+
+
+
+    // const index = data.findIndex((item: any) => item._id === params.productid);
+    // const product = data[index];
+
+    // // Update cartItem when product is available
+    // useEffect(() => {
+    //     if (product) {
+    //         setCartItem({
+    //             dicountPercentage: product.dicountPercentage,
+    //             price: product.price,
+    //             qty: 1,
+    //         });
+    //     }
+    // }, [product]);
+
+    // // Render the "Product not found" message only after all hooks are called
+    // if (!product) {
+    //     return <p>Product not found</p>;
+    // }
+
+
+
+
     useEffect(() => {
         dispatch(fetchProducts());
-    }, [dispatch])
-
-   
+    }, [])
 
 
     const index = data.findIndex((item: any) => item._id === params.productid)
     const product = data[index]
     console.log(index);
 
-    
+    const [cartItem, setCartItem] = useState({
+
+        dicountPercentage: product?.dicountPercentage,
+        price: product?.price,
+        qty: 1
+
+    });
+
+
     if (!product) {
         return <p>Product not found</p>;
     }
-
-    const [cartItem, setCartItem] = useState({
-        dicountPercentage: product.dicountPercentage,
-        price: product.price,
-        qty: 1
-       
-    });
+    console.log(cartItem);
     
+
     return (
         <div>
             {/* 1st section */}
@@ -124,10 +161,10 @@ const SingleProductPage = ({ params }: { params: { productid: string } }) => {
                         {/* price */}
                         <div className="flex flex-col gap-1">
                             {/* discounted value */}
-                            {product.dicountPercentage > 0 && (
-                                <p className="text-primary font-[500] text-[15px] lg:text-[24px]">  Rs {cartItem.price - (cartItem.price *cartItem.dicountPercentage) / 100} </p>
+                            {cartItem.dicountPercentage > 0 && (
+                                <p className="text-primary font-[500] text-[15px] lg:text-[24px]">  Rs {(cartItem.price - (cartItem.price * cartItem.dicountPercentage)/ 100 )* cartItem.qty} </p>
                             )}
-                            <p className={`text-[20px] font-[600] text-primary   ${cartItem.dicountPercentage > 0 && "line-through text-[#7e7d7d] text-lg font-normal"}`}>Rs {cartItem.price}</p>
+                            <p className={`text-[20px] font-[600] text-primary   ${cartItem.dicountPercentage > 0 && "line-through text-[#7e7d7d] text-lg font-normal"}`}>Rs {cartItem.price * cartItem.qty}</p>
                         </div>
 
                         <div className="flex items-center justify-between py-2 sm:py-3 w-[250px] md:w-[290px]">
@@ -166,7 +203,7 @@ const SingleProductPage = ({ params }: { params: { productid: string } }) => {
                         <div className="flex flex-col gap-2 pt-3">
                             <p className="text-[#9F9F9F] text-[12px] md:text-[14px]"> Color </p>
                             <div className="flex gap-3">
-                                <p className="w-[30px] h-[30px] rounded-full bg-[#816DFA] "></p>
+                                <p onClick={()=> setCartItem({...cartItem,})} className="w-[30px] h-[30px] rounded-full bg-[#816DFA] "></p>
                                 <p className=" w-[30px] h-[30px] rounded-full bg-primary"></p>
                                 <p className=" w-[30px] h-[30px] rounded-full bg-[#B88E2F]"></p>
                             </div>
@@ -174,11 +211,15 @@ const SingleProductPage = ({ params }: { params: { productid: string } }) => {
 
                         <div className="hidden md:flex md:gap-3 py-5 lg:py-7">
                             {/* count button */}
-                            <button className="flex items-center justify-between px-2 w-[123px] h-[50px] lg:h-[64px] border-[1px] border-primary rounded-[10px]">
+                            <div className="flex items-center justify-between px-2 w-[123px] h-[50px] lg:h-[64px] border-[1px] border-primary rounded-[10px]">
+                            <button onClick={()=> (setCartItem({...cartItem, qty:cartItem.qty<=1 ? 1: --cartItem.qty}))}>
                                 <GrFormSubtract />
-                                <p className="text-[12px] lg:text-[16px] text-primary"> {cartItem.qty} </p>
+                            </button>
+                            <p className="text-[12px] lg:text-[16px] text-primary"> {cartItem.qty} </p>
+                            <button onClick={()=> setCartItem({...cartItem,qty:++cartItem.qty})}>
                                 <IoMdAdd />
                             </button>
+                            </div>
 
                             {/* add To Cart */}
                             <button className="flex items-center justify-center w-[180px] lg:w-[215px] h-[50px] lg:h-[64px] border-[1px] border-primary rounded-[15px]">
@@ -203,11 +244,15 @@ const SingleProductPage = ({ params }: { params: { productid: string } }) => {
                 {/* for mobile */}
                 <div className="md:hidden flex py-7 sm:py-7 gap-2 sm:gap-3 ">
                     {/* count button */}
-                    <button className="flex items-center justify-between px-2 w-[123px] h-[50px] border-[1px] border-primary rounded-[10px]">
+                    <div className="flex items-center justify-between px-2 w-[123px] h-[50px] border-[1px] border-primary rounded-[10px]">
+                    <button onClick={()=> (setCartItem({...cartItem, qty:cartItem.qty<=1 ? 1: --cartItem.qty}))}>
                         <GrFormSubtract />
-                        <p className="text-[12px] text-primary"> 1 </p>
+                    </button>
+                    <p className="text-[12px] text-primary"> 1 </p>
+                    <button onClick={()=> setCartItem({...cartItem,qty:++cartItem.qty})}>
                         <IoMdAdd />
                     </button>
+                    </div>
 
                     {/* add To Cart */}
                     <button className="flex items-center justify-center w-[180px] h-[50px] border-[1px] border-primary rounded-[15px]">
