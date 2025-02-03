@@ -12,8 +12,10 @@ import Link from "next/link";
 import ProductListing from "@/app/components/product-listing/product-listing";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/app/store/store";
-import { fetchProducts, STATUSES } from "@/app/store/features/product";
+import { fetchProducts, productSlice, STATUSES } from "@/app/store/features/product";
 import { useEffect, useState } from "react";
+import { addToCart } from "../store/features/cart";
+
 
 const SingleProductPage = ({ params }: { params: { productid: string } }) => {
 
@@ -59,7 +61,7 @@ const SingleProductPage = ({ params }: { params: { productid: string } }) => {
 
     useEffect(() => {
         dispatch(fetchProducts());
-    }, [])
+    }, [dispatch])
 
 
     const index = data.findIndex((item: any) => item._id === params.productid)
@@ -67,19 +69,27 @@ const SingleProductPage = ({ params }: { params: { productid: string } }) => {
     console.log(index);
 
     const [cartItem, setCartItem] = useState({
-
+        _id: product?._id,
+        title: product?.title,
+        productImage: product?.productImage,
+        tags: product?.tags,
+        description: product?.description,
         dicountPercentage: product?.dicountPercentage,
         price: product?.price,
-        qty: 1
+        qty: 1,
 
     });
 
+    const [selectedSize, setSelectedSize] = useState<string | null>(null);
+
+    // Function to handle size selection
+    const handleSizeSelect = (size: string) => {
+        setSelectedSize(size);
+    };
 
     if (!product) {
         return <p>Product not found</p>;
     }
-    console.log(cartItem);
-    
 
     return (
         <div>
@@ -162,7 +172,7 @@ const SingleProductPage = ({ params }: { params: { productid: string } }) => {
                         <div className="flex flex-col gap-1">
                             {/* discounted value */}
                             {cartItem.dicountPercentage > 0 && (
-                                <p className="text-primary font-[500] text-[15px] lg:text-[24px]">  Rs {(cartItem.price - (cartItem.price * cartItem.dicountPercentage)/ 100 )* cartItem.qty} </p>
+                                <p className="text-primary font-[500] text-[15px] lg:text-[24px]">  Rs {(cartItem.price - (cartItem.price * cartItem.dicountPercentage) / 100) * cartItem.qty} </p>
                             )}
                             <p className={`text-[20px] font-[600] text-primary   ${cartItem.dicountPercentage > 0 && "line-through text-[#7e7d7d] text-lg font-normal"}`}>Rs {cartItem.price * cartItem.qty}</p>
                         </div>
@@ -181,10 +191,26 @@ const SingleProductPage = ({ params }: { params: { productid: string } }) => {
                         {/* paragraph */}
                         <p className="text-primary text-[10px] lg:text-[13px] md:leading-[19.5px] tracing-[1px] "> {product.description}</p>
 
-                        {/* Size */}
+
+                        {/* sizesss */}
+                        <div className="flex gap-3">
+                            {["L", "XL", "XS"].map((size) => (
+                                <div
+                                    key={size}
+                                    onClick={() => handleSizeSelect(size)}
+                                    className={`w-[30px] h-[30px] bg-[#F9F1E7] flex justify-center items-center rounded-[5px] cursor-pointer ${selectedSize === size ? "bg-[#B88E2F] text-white" : "text-primary"
+                                        }`}
+                                >
+                                    <p className="text-[13px]">{size}</p>
+                                </div>
+                            ))}
+                        </div>
+
+
+                        {/* Size
                         <div className="flex flex-col pt-2 gap-2">
                             <p className="text-[#9F9F9F] text-[14px]"> Size </p>
-                            <div className="flex gap-3">
+                            <div  className="flex gap-3">
                                 <div className="w-[30px] h-[30px] bg-[#F9F1E7]  hover:bg-[#B88E2F]  text-primary hover:text-secondary flex justify-center items-center rounded-[5px]">
                                     <p className="text-[13px]"> L </p>
                                 </div>
@@ -197,13 +223,13 @@ const SingleProductPage = ({ params }: { params: { productid: string } }) => {
                                     <p className="text-[13px]"> XS </p>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
                         {/* Color */}
                         <div className="flex flex-col gap-2 pt-3">
                             <p className="text-[#9F9F9F] text-[12px] md:text-[14px]"> Color </p>
                             <div className="flex gap-3">
-                                <p onClick={()=> setCartItem({...cartItem,})} className="w-[30px] h-[30px] rounded-full bg-[#816DFA] "></p>
+                                <p className="w-[30px] h-[30px] rounded-full bg-[#816DFA] "></p>
                                 <p className=" w-[30px] h-[30px] rounded-full bg-primary"></p>
                                 <p className=" w-[30px] h-[30px] rounded-full bg-[#B88E2F]"></p>
                             </div>
@@ -212,17 +238,17 @@ const SingleProductPage = ({ params }: { params: { productid: string } }) => {
                         <div className="hidden md:flex md:gap-3 py-5 lg:py-7">
                             {/* count button */}
                             <div className="flex items-center justify-between px-2 w-[123px] h-[50px] lg:h-[64px] border-[1px] border-primary rounded-[10px]">
-                            <button onClick={()=> (setCartItem({...cartItem, qty:cartItem.qty<=1 ? 1: --cartItem.qty}))}>
-                                <GrFormSubtract />
-                            </button>
-                            <p className="text-[12px] lg:text-[16px] text-primary"> {cartItem.qty} </p>
-                            <button onClick={()=> setCartItem({...cartItem,qty:++cartItem.qty})}>
-                                <IoMdAdd />
-                            </button>
+                                <button onClick={() => (setCartItem({ ...cartItem, qty: cartItem.qty <= 1 ? 1 : --cartItem.qty }))}>
+                                    <GrFormSubtract />
+                                </button>
+                                <p className="text-[12px] lg:text-[16px] text-primary"> {cartItem.qty} </p>
+                                <button onClick={() => setCartItem({ ...cartItem, qty: ++cartItem.qty })}>
+                                    <IoMdAdd />
+                                </button>
                             </div>
 
                             {/* add To Cart */}
-                            <button className="flex items-center justify-center w-[180px] lg:w-[215px] h-[50px] lg:h-[64px] border-[1px] border-primary rounded-[15px]">
+                            <button onClick={()=>dispatch(addToCart(cartItem))} className="flex items-center justify-center w-[180px] lg:w-[215px] h-[50px] lg:h-[64px] border-[1px] border-primary rounded-[15px]">
                                 <p className="text-[15px] lg:text-[20px] text-primary"> Add To Cart </p>
                             </button>
 
@@ -245,13 +271,13 @@ const SingleProductPage = ({ params }: { params: { productid: string } }) => {
                 <div className="md:hidden flex py-7 sm:py-7 gap-2 sm:gap-3 ">
                     {/* count button */}
                     <div className="flex items-center justify-between px-2 w-[123px] h-[50px] border-[1px] border-primary rounded-[10px]">
-                    <button onClick={()=> (setCartItem({...cartItem, qty:cartItem.qty<=1 ? 1: --cartItem.qty}))}>
-                        <GrFormSubtract />
-                    </button>
-                    <p className="text-[12px] text-primary"> 1 </p>
-                    <button onClick={()=> setCartItem({...cartItem,qty:++cartItem.qty})}>
-                        <IoMdAdd />
-                    </button>
+                        <button onClick={() => (setCartItem({ ...cartItem, qty: cartItem.qty <= 1 ? 1 : --cartItem.qty }))}>
+                            <GrFormSubtract className="text-primary" />
+                        </button>
+                        <p className="text-[12px] text-primary"> {cartItem.qty} </p>
+                        <button onClick={() => setCartItem({ ...cartItem, qty: ++cartItem.qty })}>
+                            <IoMdAdd className="text-primary" />
+                        </button>
                     </div>
 
                     {/* add To Cart */}

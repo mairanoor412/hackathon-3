@@ -22,4 +22,6 @@ export type Cart = {
     dicountPercentage: number;
     description: string;
     isNew: boolean;
+    qty: number;
+    uuid: number | string | undefined;
 }

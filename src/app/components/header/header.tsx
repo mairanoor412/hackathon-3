@@ -6,13 +6,21 @@ import { IoIosHeartEmpty } from "react-icons/io";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ResponsiveMenu from "../responsive-menu/responsive-menu";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import { RootState } from "@reduxjs/toolkit/query";
+import { AppDispatch } from "@/app/store/store";
+import { useAppSelector } from "@/app/store/hooks";
 
 
 
 const Header = () => {
     const [open, setopen] = useState(false)
+    const dispatch = useDispatch<AppDispatch>();
+    // const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
+    const Cart = useAppSelector((state) => state.cart);
+
 
     return (
         <div className=" overflow-x-hidden w-full bg-secondary fixed  z-50">
@@ -62,7 +70,11 @@ const Header = () => {
                             <IoSearchOutline className="w-[28px] h-[28px]" />
                             <IoIosHeartEmpty className="w-[28px] h-[28px]" />
                             <Link href="/cart">
+                            <span className="relative">
                                 <MdOutlineShoppingCart className="w-[28px] h-[28px]" />
+                                </span>
+                                {Cart.length > 0 && ( <span className="absolute top-3 right-[135px] bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full"> {Cart.length} </span>)}
+                               
                             </Link>
                         </div>
 
