@@ -1,7 +1,6 @@
 "use client"
 import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa6";
-import { LuDot } from "react-icons/lu";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";

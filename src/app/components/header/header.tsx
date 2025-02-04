@@ -8,17 +8,12 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import ResponsiveMenu from "../responsive-menu/responsive-menu";
-import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import { RootState } from "@reduxjs/toolkit/query";
-import { AppDispatch } from "@/app/store/store";
 import { useAppSelector } from "@/app/store/hooks";
 
 
 
 const Header = () => {
     const [open, setopen] = useState(false)
-    const dispatch = useDispatch<AppDispatch>();
-    // const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
     const Cart = useAppSelector((state) => state.cart);
 
 

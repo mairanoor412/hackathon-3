@@ -14,7 +14,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/app/store/store";
 import { fetchProducts, productSlice, STATUSES } from "@/app/store/features/product";
 import { useEffect, useState } from "react";
-import { addToCart } from "../store/features/cart";
+import { addToCart, delItem } from "../store/features/cart";
 
 
 const SingleProductPage = ({ params }: { params: { productid: string } }) => {
@@ -238,7 +238,7 @@ const SingleProductPage = ({ params }: { params: { productid: string } }) => {
                         <div className="hidden md:flex md:gap-3 py-5 lg:py-7">
                             {/* count button */}
                             <div className="flex items-center justify-between px-2 w-[123px] h-[50px] lg:h-[64px] border-[1px] border-primary rounded-[10px]">
-                                <button onClick={() => (setCartItem({ ...cartItem, qty: cartItem.qty <= 1 ? 1 : --cartItem.qty }))}>
+                                <button onClick={() => setCartItem({ ...cartItem, qty: cartItem.qty <= 1 ? 1 : --cartItem.qty })}>
                                     <GrFormSubtract />
                                 </button>
                                 <p className="text-[12px] lg:text-[16px] text-primary"> {cartItem.qty} </p>
@@ -271,7 +271,7 @@ const SingleProductPage = ({ params }: { params: { productid: string } }) => {
                 <div className="md:hidden flex py-7 sm:py-7 gap-2 sm:gap-3 ">
                     {/* count button */}
                     <div className="flex items-center justify-between px-2 w-[123px] h-[50px] border-[1px] border-primary rounded-[10px]">
-                        <button onClick={() => (setCartItem({ ...cartItem, qty: cartItem.qty <= 1 ? 1 : --cartItem.qty }))}>
+                        <button onClick={() => setCartItem({ ...cartItem, qty: cartItem.qty <= 1 ? 1 : --cartItem.qty })}>
                             <GrFormSubtract className="text-primary" />
                         </button>
                         <p className="text-[12px] text-primary"> {cartItem.qty} </p>
