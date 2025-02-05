@@ -13,7 +13,7 @@ const CartCard = () => {
     
     return (
 
-       <div>
+       <div className="bg-secondary">
         {cartArray.length >=  1 &&
              cartArray.map((item, i)=>(
            

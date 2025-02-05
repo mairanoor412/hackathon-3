@@ -281,7 +281,7 @@ const SingleProductPage = ({ params }: { params: { productid: string } }) => {
                     </div>
 
                     {/* add To Cart */}
-                    <button className="flex items-center justify-center w-[180px] h-[50px] border-[1px] border-primary rounded-[15px]">
+                    <button onClick={()=>dispatch(addToCart(cartItem))} className="flex items-center justify-center w-[180px] h-[50px] border-[1px] border-primary rounded-[15px]">
                         <p className="text-[15px] text-primary"> Add To Cart </p>
                     </button>
 

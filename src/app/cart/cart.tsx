@@ -20,7 +20,7 @@ const CartPage = () => {
 
 
     return (
-        <div>
+        <div className="bg-secondary">
             {/* 1st section */}
             <div className="bg-[url('/image/shop/Rectangle-1.png')] h-[200px] md:h-[316px] bg-cover ">
                 {/* heading */}
@@ -43,7 +43,7 @@ const CartPage = () => {
                 {/* left */}
                 <div className="h-full  mt-5 mx-3 md:mt-8 xl:mt-16 lg:ml-20 lg:mr-14 xl:mx-0 xl:w-[817px] xl:pr-7  col-span-2">
 
-                    <div className="bg-[#F9F1E7] h-[35px] md:h-[45px] xl:h-[55px] flex items-center justify-between md:justify-around">
+                    <div className="bg-[#F9F1E7] h-[35px] md:h-[45px] xl:h-[55px] md:flex items-center justify-between md:justify-around hidden ">
                         <p className="text-primary font-[500] text-[10px] md:text-[14px] xl:text-[16px]"> Product </p>
                         <p className="text-primary font-[500] text-[10px] md:text-[14px] xl:text-[16px]"> Price </p>
                         <p className="text-primary font-[500] text-[10px] md:text-[14px] xl:text-[16px]"> Quantity </p>
