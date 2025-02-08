@@ -7,6 +7,7 @@ import { MdOutlineLocalShipping } from "react-icons/md";
 import { SlSupport } from "react-icons/sl";
 import { useAppSelector } from "../store/hooks";
 import CartCard from "../components/cartCard";
+import Link from "next/link";
 
 
 const CartPage = () => {
@@ -67,7 +68,9 @@ const CartPage = () => {
                     </div>
 
                     {/* button */}
+                    <Link href="/checkout">
                     <button className=" w-[95px] h-[30px] sm:w-[110px] sm:h-[40px] md:w-[170px] md:h-[45px] lg:w-[222px] lg:h-[58.95px] text-center text-primary text-[13px] mt-4 xl:text-[20px] border-[1px] border-primary rounded-[15px]"> Check Out</button>
+                    </Link>
                 </div>
 
             </div>
