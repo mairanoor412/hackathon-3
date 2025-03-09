@@ -1,27 +1,16 @@
 
-import { client } from "@/sanity/lib/client";
 import Link from "next/link";
 
 
 
 const HeroSection =async () => {
-     const query = `*[_type=='product'][0...23]{
-                _id,
-                "productImage": productImage.asset->url
-        }`
-           const data =await client.fetch(query);
-           console.log(data);
+    
     return (
         <div className="w-full   overflow-x-hidden relative">
 
             {/* background image */}
 
-            <div
-                style={{
-                    backgroundImage: `url(${data[4]?.productImage})`,
-                }}
-                className="h-[250px] sm:h-[350px] md:h-[550px] lg:h-[600px] xl:h-[716.83px] bg-cover bg-center"
-            >
+            <div className="bg-[url('/image/hero-section/scandinavian-interior-mockup-wall-decal-background-1.png')] h-[250px] sm:h-[350px] md:h-[550px] lg:h-[600px] xl:h-[716.83px]  bg-cover bg-center   ">
 
                 {/* content */}
                 <div className="w-[150px] px-3 py-2 absolute top-[80px] right-[25px]  sm:w-[240px] sm:px-6 sm:py-3 sm:top-[95px] sm:right-0 sm:mr-3 md:w-[350px] md:px-5 md:pb-5  md:top-[200px] md:right-0 md:mr-10 lg:w-[450px] lg:px-10 lg:py-10 lg:top-[150px] lg:right-0 lg:mr-20   xl:w-[663px] xl:h-[443px] bg-[#FFF3E3]  xl:top-[165px] xl:left-[739px] rounded-[5px] sm:rounded-[10px]">
@@ -45,8 +34,10 @@ const HeroSection =async () => {
 export default HeroSection;
 
 
-// style={{
-//     backgroundImage: `url(${data[4]?.productImage})`,
-// }}
-// className="h-[250px] sm:h-[350px] md:h-[550px] lg:h-[600px] xl:h-[716.83px] bg-cover bg-center"
-// >
+// bg image
+{/* <div
+style={{
+    backgroundImage: `url(${data[4]?.productImage})`,
+}}
+className="h-[250px] sm:h-[350px] md:h-[550px] lg:h-[600px] xl:h-[716.83px] bg-cover bg-center"
+> */}
