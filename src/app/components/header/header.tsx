@@ -102,7 +102,7 @@ const Header = () => {
             </div>
 
             {/* Mobile Sidebar */}
-            <ResponsiveMenu open={open} />
+            <ResponsiveMenu open={open}  setopen={setopen} />
 
         </div>
     )
