@@ -51,7 +51,7 @@ const Footer = () => {
 
                 <hr className="w-full border-[1px] border-[#D9D9D9] mt-10"></hr>
 
-                <p className="text-primary text-[16px] pt-8 pl-5 xl:pl-0">2023 furino. All rights reserved.</p>
+                <p className="text-primary text-[16px] pt-8  text-center xl:pl-0">2023 furino. All rights reserved.</p>
 
 
 
