@@ -135,7 +135,7 @@ const Blog = () => {
                     {/* right 1 */}
                     <div className="col-span-1 pr-5 pt-10 lg:pt-20  sm:pr-10 md:ml-5 md:pr-20 lg:pl-7 lg:pr-40 xl:pl-0 xl:pr-0 xl:w-[252px]">
                         <div className=" ">
-                            <input type="text" id="search" className="border-[1px] border-[#9F9F9F] rounded-[5px] xl:rounded-[10px] h-[20px] md:h-[35px] lg:h-[45px] w-full xl:h-[58px]" />
+                            <input type="text" id="search" className="bg-secondary border-[1px] border-[#9F9F9F] rounded-[5px] xl:rounded-[10px] h-[20px] md:h-[35px] lg:h-[45px] w-full xl:h-[58px]" />
                         </div>
                         {/* categories */}
                         <div className="py-3 flex flex-col  gap-3 md:gap-4 lg:gap-8 xl:gap-10 ">

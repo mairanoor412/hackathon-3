@@ -78,25 +78,25 @@ const Contact = () => {
                             {/* name */}
                             <div className="flex flex-col gap-5">
                                 <p className="text-[16px] font-[500] leading-[24px] text-primary"> Your name </p>
-                                <input type="text" id="name" placeholder="ABC" required className=" w-full  xl:w-[528.75px] h-[75px] border-[1px] border-[#9F9F9F] rounded-[10px] pl-4" />
+                                <input type="text" id="name" placeholder="ABC" required className=" w-full  xl:w-[528.75px] h-[75px] border-[1px] border-[#9F9F9F] rounded-[10px] pl-4 bg-secondary" />
                             </div>
 
                             {/* Email */}
                             <div className="flex flex-col gap-5">
                                 <p className="text-[16px] font-[500] leading-[24px] text-primary"> Email address </p>
-                                <input type="text" id="name" placeholder="Abc@def.com" required className="w-full xl:w-[528.75px] h-[75px] border-[1px] border-[#9F9F9F] rounded-[10px] pl-4" />
+                                <input type="text" id="name" placeholder="Abc@def.com" required className="w-full xl:w-[528.75px] h-[75px] border-[1px] border-[#9F9F9F] rounded-[10px] pl-4 bg-secondary" />
                             </div>
 
                             {/* Subject */}
                             <div className="flex flex-col gap-5">
                                 <p className="text-[16px] font-[500] leading-[24px] text-primary"> Subject </p>
-                                <input type="text" id="name" placeholder="This is an optional" required className="w-full xl:w-[528.75px] h-[75px] border-[1px] border-[#9F9F9F] rounded-[10px] pl-4" />
+                                <input type="text" id="name" placeholder="This is an optional" required className="w-full xl:w-[528.75px] h-[75px] border-[1px] border-[#9F9F9F] rounded-[10px] pl-4 bg-secondary" />
                             </div>
 
                             {/* message */}
                             <div className="flex flex-col gap-5">
                                 <p className="text-[16px] font-[500] leading-[24px] text-primary"> Message </p>
-                                <input type="text" id="name" placeholder="Hi! i’d like to ask about" required className="w-full xl:w-[528.75px] h-[120px] border-[1px] border-[#9F9F9F] rounded-[10px] pl-4" />
+                                <input type="text" id="name" placeholder="Hi! i’d like to ask about" required className="w-full xl:w-[528.75px] h-[120px] border-[1px] border-[#9F9F9F] rounded-[10px] pl-4 bg-secondary" />
                             </div>
 
                             <button className="ml-2 w-[150px] py-3 text-[12px] xl:w-[237px] xl:h-[55px] bg-[#B88E2F] text-secondary xl:text-[16px] rounded-[5px]"> Submit </button>
