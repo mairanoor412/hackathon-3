@@ -81,10 +81,9 @@ const Rooms = () => {
     return (
         <div>{loading ? (
             <div className="h-[100vh] w-full flex justify-center items-center bg-secondary ">
-               <span className="loading loading-spinner loading-xs text-primary"></span>
-                <span className="loading loading-spinner loading-sm  text-[#B88E2F]"></span>
-                <span className="loading loading-spinner loading-md  text-primary"></span>
-                <span className="loading loading-spinner loading-lg  text-[#B88E2F]"></span>
+
+                <span className="loading loading-spinner loading-md  text-[#B88E2F]"></span>
+              
             </div>
         ) : (
             <div className="overflow-x-hidden w-full h-[450px] sm:h-[550px] md:h-[600px] lg:h-[670px] flex flex-col justify-center items-center bg-[#FCF8F3]">
